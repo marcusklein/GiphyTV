@@ -39,10 +39,8 @@ router.get('/:search?', function(req, res, next) {
   request(giphyApiURL(), function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var image = JSON.parse(body).data.image_original_url;
-
-      //image = "http://i.makeagif.com/media/5-09-2016/k0gAiP.gif";
-
-      res.render('index', { image: image });
+      
+      res.render('index', { image: image, search: searchTerm.replace("+", " ") });
     }
   });
 
