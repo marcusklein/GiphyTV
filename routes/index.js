@@ -39,8 +39,10 @@ router.get('/:search?', function(req, res, next) {
   request(giphyApiURL(), function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var image = JSON.parse(body).data.image_original_url;
-      
-      res.render('index', { image: image, search: searchTerm.replace("+", " ") });
+
+      var search = searchTerm.replace("+", " ");
+
+      res.render('index', { title: "GiphyTV | " + search, image: image, search: search });
     }
   });
 
